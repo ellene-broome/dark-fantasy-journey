@@ -14,12 +14,13 @@ function showToast(message = "Too many requests — please wait.") {
 // ========== NAVIGATION TOGGLE ==========
 document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.getElementById("navToggle");
-  if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      const navLinks = document.getElementById("navLinks");
-      if (navLinks) navLinks.classList.toggle("hidden");
-    });
-  }
+const navLinks = document.getElementById("navLinks");
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("hidden");
+  });
+}
 
   // Show More Button (Homepage only)
   const showMoreBtn = document.getElementById("showMoreBtn");
@@ -46,18 +47,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const booksSection = document.getElementById("darkTowerGrid");
   const characterSection = document.getElementById("characterGrid");
 
-  if (booksSection && window.location.pathname.includes("books")) {
-    fetchBooks();
-  }
+console.log("***** Current path:", window.location.pathname);
 
-  if (characterSection && window.location.pathname.includes("characters")) {
-    loadCharacters();
-  }
+if (booksSection && window.location.pathname.includes("books")) {
+  console.log("📘 Loading books...");
+  fetchBooks();
+}
+
+if (characterSection && window.location.pathname.includes("characters")) {
+  console.log("***** Loading characters...");
+  loadCharacters();
+}
+
 });
 
 // ========== BOOKS FROM API ==========
 async function fetchBooks() {
   const grid = document.getElementById("darkTowerGrid");
+
+  console.log("Fetching books...");
+  console.log("Grid element:", grid); // Debugging line
+
   if (!grid) return;
 
   grid.innerHTML = `<p class="text-center text-white">Loading...</p>`;
@@ -75,8 +85,11 @@ async function fetchBooks() {
       return;
     }
 
-    const data = await res.json(); // <-- only now is data available
-    console.log("Book data from API:", data); // <-- move this HERE
+    const data = await res.json(); // data available
+    console.log("Book data from API:", data); // Debugging line
+
+    const books = data.docs.slice(0, 10);
+    console.log("Books to display:", books); // Debugging line
 
     grid.innerHTML = data.docs.slice(0, 10).map(book => `
       <div class="bg-slate-800 p-4 rounded shadow hover:shadow-lg">
