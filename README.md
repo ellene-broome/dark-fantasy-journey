@@ -15,10 +15,9 @@ This web application allows users to explore characters, books, and the world of
 ---
 
 ## 🌐 Live Site  
-[View the Live Site](https://coming/)
-
+[View the Live Site](http://127.0.0.1:5500/index.html)
 ## 📁 Repository  
-[View the GitHub Repo](https://github.com/coming/dark-tower-explorer)
+[View the GitHub Repo](https://github.com/ellene-broome/dark-fantasy-journey.git)
 
 ## Screenshots  
 ![PostmanScreenshot](assets/images/darkTowerPostman.png)  
@@ -63,15 +62,6 @@ This web application allows users to explore characters, books, and the world of
 Tracked using GitHub Projects.  
 [View My Project Board](https://github.com/users/ellene-broome/projects/5/views/1?system_template=kanban)
 
----
-
-## 🧪 Future Features (Optional Ideas)
-- API for quotes or characters
-- Page transitions using JS
-- Sound effects on hover
-- Sorting or category tags
-
----
 
 ## 👩🏼‍💻 Author  
 Ellene R. Broome  
