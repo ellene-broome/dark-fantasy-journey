@@ -15,10 +15,10 @@ This web application allows users to explore characters, books, and the world of
 ---
 
 ## 🌐 Live Site  
-[View the Live Site](https://your-username.github.io/dark-tower-explorer/)
+[View the Live Site](https://coming/)
 
 ## 📁 Repository  
-[View the GitHub Repo](https://github.com/your-username/dark-tower-explorer)
+[View the GitHub Repo](https://github.com/coming/dark-tower-explorer)
 
 ## Screenshots  
 ![PostmanScreenshot](assets/images/darkTowerPostman.png)  
