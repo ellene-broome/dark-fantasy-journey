@@ -1,0 +1,46 @@
+<!-- characters.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Characters – The Dark Tower Explorer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Styles (if any) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-900 text-white">
+
+  <!-- ========== HEADER ========== -->
+  <header class="bg-slate-800 p-4">
+    <nav class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-blue-400 text-xl font-bold">The Dark Tower Explorer</a>
+      <ul class="flex gap-4 text-sm">
+        <li><a href="index.html" class="hover:text-amber-400">Home</a></li>
+        <li><a href="books.html" class="hover:text-blue-300">Books</a></li>
+        <li><a href="characters.html" class="text-rose-300 font-bold">Characters</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="container mx-auto p-6">
+    <h1 class="text-4xl font-serif text-rose-300 mb-6">Ka-tet of Roland Deschain</h1>
+    <section id="characterGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+  </main>
+
+  <!-- ========== TOAST NOTIFICATION ========== -->
+  <div id="toast" class="fixed bottom-4 right-4 bg-red-700 text-white py-2 px-4 rounded shadow-lg hidden z-50">
+    ⚠️ Too many requests — please wait and try again.
+  </div>
+
+  <!-- ========== SCRIPT ========== -->
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
+
+

@@ -1,62 +1,122 @@
 console.log("Hello, Dark Fantasy Journey!");
 
+// ========== TOAST NOTIFICATION ==========
+function showToast(message = "Too many requests — please wait.") {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 4000);
+}
 
-// Initialize Tailwind CSS
-    document.addEventListener("DOMContentLoaded", () => {
-      const colorMap = {
-        "blue-400": "text-blue-400",
-        "green-400": "text-green-400",
-        "yellow-400": "text-yellow-400",
-        "red-400": "text-red-400"
-      };
-      // Array of Books
-const darkTowerBooks = [
-  {
-    title: "The Gunslinger",
-    year: 1982,
-    summary: "Roland of Gilead pursues the mysterious Man in Black across a desolate world.",
-    cover: "assets/images/gs.png",
-    color: "blue-400"
-  },
-  {
-    title: "The Drawing of the Three",
-    year: 1987,
-    summary: "Roland encounters three key figures from our world who will aid him on his quest.",
-    cover: "assets/images/dot.png",
-    color: "green-400"
-  },
-  {
-    title: "The Waste Lands",
-    year: 1991,
-    summary: "Roland and his companions journey through a decaying city to reach the Dark Tower.",
-    cover: "assets/images/wl.png",
-    color: "yellow-400"
-  },
-  {
-    title: "Wizard and Glass",
-    year: 1997,
-    summary: "A flashback to Roland's youth and his first love, Susan Delgado.",
-    cover: "assets/images/w&g.png",
-    color: "red-400"
+// ========== NAVIGATION TOGGLE ==========
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.getElementById("navToggle");
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
+      const navLinks = document.getElementById("navLinks");
+      if (navLinks) navLinks.classList.toggle("hidden");
+    });
   }
-];
 
-    const grid = document.getElementById("darkTowerGrid");
+  // Show More Button (Homepage only)
+  const showMoreBtn = document.getElementById("showMoreBtn");
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener("click", () => {
+      const more = document.getElementById("moreContent");
+      if (more) more.classList.toggle("hidden");
+    });
+  }
 
-    darkTowerBooks.forEach(book => {
-      const card = document.createElement("article");
-      card.className = "bg-slate-700 rounded-lg p-4 hover:shadow-lg transition-shadow duration-300";
+  // Lazy reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fadeInUp');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll("article, div.card").forEach(el => observer.observe(el));
+
+  // Load page-specific data
+  const booksSection = document.getElementById("darkTowerGrid");
+  const characterSection = document.getElementById("characterGrid");
+
+  if (booksSection && window.location.pathname.includes("books")) {
+    fetchBooks();
+  }
+
+  if (characterSection && window.location.pathname.includes("characters")) {
+    loadCharacters();
+  }
+});
+
+// ========== BOOKS FROM API ==========
+async function fetchBooks() {
+  const grid = document.getElementById("darkTowerGrid");
+  if (!grid) return;
+
+  grid.innerHTML = `<p class="text-center text-white">Loading...</p>`;
+
+  try {
+    const res = await fetch("https://openlibrary.org/search.json?q=dark+tower");
+
+    if (res.status === 429) {
+      showToast("Too many requests — please wait.");
+      return;
+    }
+
+    if (!res.ok) {
+      showToast(`Error ${res.status}: ${res.statusText}`);
+      return;
+    }
+
+    const data = await res.json(); // <-- only now is data available
+    console.log("Book data from API:", data); // <-- move this HERE
+
+    grid.innerHTML = data.docs.slice(0, 10).map(book => `
+      <div class="bg-slate-800 p-4 rounded shadow hover:shadow-lg">
+        <h2 class="text-xl font-bold text-blue-300">${book.title}</h2>
+        <p class="text-gray-300">Author: ${book.author_name?.[0] || "Unknown"}</p>
+        <p class="text-gray-500 text-sm">Published: ${book.first_publish_year || "N/A"}</p>
+      </div>
+    `).join("");
+
+  } catch (err) {
+    console.error("Error loading books:", err);
+    showToast("Something went wrong!");
+  }
+}
+
+// ========== CHARACTERS FROM JSON ==========
+async function loadCharacters() {
+  const container = document.getElementById("characterGrid");
+  if (!container) return;
+
+  try {
+    const res = await fetch("characters.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const data = await res.json();
+
+    data.forEach(char => {
+      const card = document.createElement("div");
+      card.className = "bg-slate-800 p-4 rounded-lg shadow-lg";
+
       card.innerHTML = `
-        <img src="${book.cover}" alt="${book.title} Cover" class="w-full rounded-lg">
-      <h2 class="text-2xl font-bold ${colorMap[book.color]} mb-2">${book.title}</h2>
-      <p class="text-gray-300 mb-2"><strong>Year:</strong> ${book.year}</p>
-      <p class="text-gray-200">${book.summary}</p>
-    `;
-        grid.appendChild(card);
-    });
+        <h2 class="text-xl font-bold text-rose-300 mb-2">${char.name}</h2>
+        ${char.aliases ? `<p class="text-sm text-amber-400 mb-1"><strong>Aliases:</strong> ${char.aliases.join(", ")}</p>` : ""}
+        <p class="text-slate-300">${char.description}</p>
+      `;
 
-    document.getElementById("showMoreBtn").addEventListener("click", () => {
-        const moreContent = document.getElementById("moreContent");
-        moreContent.classList.toggle("hidden");
+      container.appendChild(card);
     });
-    });
+  } catch (err) {
+    console.error("Failed to load characters:", err);
+    showToast("Character data could not be loaded.");
+  }
+}

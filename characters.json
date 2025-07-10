@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Roland Deschain",
+    "description": "The last Gunslinger and the protagonist of the series."
+  },
+  {
+    "name": "Eddie Dean",
+    "description": "A troubled heroin addict from New York who becomes a loyal gunslinger."
+  },
+  {
+    "name": "Susannah Dean",
+    "description": "Originally Odetta Holmes and Detta Walker; she becomes a fierce member of the ka-tet."
+  },
+  {
+    "name": "Jake Chambers",
+    "description": "A boy from New York who plays a crucial role in Roland\u2019s quest."
+  },
+  {
+    "name": "Oy",
+    "description": "A billy-bumbler who is fiercely loyal to Jake and the ka-tet."
+  },
+  {
+    "name": "The Man in Black",
+    "aliases": [
+      "Walter o'Dim",
+      "Randall Flagg",
+      "The Ageless Stranger",
+      "Marten Broadcloak"
+    ],
+    "description": "A powerful sorcerer and antagonist who takes many names and forms."
+  },
+  {
+    "name": "Sheemie Ruiz",
+    "description": "A simple-minded boy with powerful psychic abilities (a Breaker)."
+  },
+  {
+    "name": "Father Callahan",
+    "description": "A priest from 'Salem's Lot' who joins Roland\u2019s quest in later books."
+  },
+  {
+    "name": "Mordred Deschain",
+    "description": "Roland\u2019s son, born of both human and demonic origin, who threatens the quest."
+  },
+  {
+    "name": "Stephen King",
+    "description": "The author himself appears as a character, playing a meta role in the story."
+  }
+]
