@@ -1,18 +1,9 @@
-# # 🌌 The Dark Tower Explorer
+# The Dark Tower Explorer
+![Alt Text](assets/images/rose3.png)
+
+
 
 A capstone project inspired by *The Dark Tower* universe created by Stephen King.
-
-## Overview
-
-This responsive web application lets users explore books and characters from *The Dark Tower* saga. It showcases core front-end development skills, including:
-
-  - Semantic HTML5
-  - Tailwind CSS (mobile-first, responsive design)
-  - Vanilla JavaScript (functions, DOM manipulation, array methods)
-  - API integration using Open Library
-  - Dynamic rendering from both local data and live fetch calls
-
----
 
 ## Live Site
 
@@ -21,24 +12,16 @@ This responsive web application lets users explore books and characters from *Th
 ## Repository
 
 [View the GitHub Repo](https://github.com/ellene-broome/dark-fantasy-journey)
+---
 
+## Mobile View
+
+![Alt Text](assets/images/mobile.png)
 ---
 
 ## Screenshots
 
 ![Postman Screenshot](assets/images/darkTowerPostman.png)
-
----
-
-## Features
-
-- Book cards rendered dynamically from Open Library API
-- Character cards loaded from a local `characters.json` file
-- Responsive layout built with Tailwind CSS (grid, spacing, typography)
-- Custom color palette inspired by *The Dark Tower* art
-- Interactive quote generator
-- (Optional) Search and filtering logic with future enhancements in mind
-
 ---
 
 ## Capstone Requirements Checklist

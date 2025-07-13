@@ -26,8 +26,6 @@ if (navToggle && navLinks) {
 
   ];
   
-  // function for quote button
-  
 
 function pickRandom() {
   return quotes[Math.floor(Math.random() * quotes.length)];
@@ -37,23 +35,24 @@ window.myFunction = function () {
   const quoteBox = document.getElementById("quotes");
   if (!quoteBox) return;
   quoteBox.innerText = pickRandom();
+  console.log("Quote displayed:", quoteBox.innerText);
 };
 
-  myFunction(); // show quote on load
+  myFunction(); // SHOW QUOTE
 
-// Load page-specific data
+// Load page-specific data books or characters
   const booksSection = document.getElementById("darkTowerGrid");
   const characterSection = document.getElementById("characterGrid");
 
-console.log("***** Current path:", window.location.pathname);
+console.log("Current path:", window.location.pathname);
 
 if (booksSection && window.location.pathname.includes("books")) {
-  console.log("📘 Loading books...");
+  console.log("Loading books...");
   fetchBooks();
 }
 
 if (characterSection && window.location.pathname.includes("characters")) {
-  console.log("***** Loading characters...");
+  console.log("Loading characters...");
   loadCharacters();
 }
   // Add fade-in animation to quotes
@@ -61,6 +60,7 @@ if (characterSection && window.location.pathname.includes("characters")) {
   if (quoteElement) {
     quoteElement.classList.add("animate-fadeInUp");
   }
+  console.log("Quote element:", quoteElement);
 });
 
 
@@ -89,11 +89,11 @@ async function fetchBooks() {
       return;
     }
 
-    const data = await res.json(); // data available
-    console.log("Book data from API:", data); // Debugging line
+    const data = await res.json();
+    console.log("Book data from API:", data); 
 
     const books = data.docs.slice(0, 8);
-    console.log("Books to display:", books); // Debugging line
+    console.log("Books to display:", books);
 
     grid.innerHTML = data.docs.slice(0, 8).map(book => `
       <div class="bg-slate-800 p-4 rounded shadow hover:shadow-lg">
