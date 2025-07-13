@@ -22,6 +22,9 @@
     }
   }
 </script>
+// CSS Styles Links
+<link rel="stylesheet" href="styles.css">
+
 
 <!-- Animation CSS -->
 <style>
@@ -35,29 +38,25 @@
     animation: fadeInUp 0.8s ease-out forwards;
   }
 </style>
+</head>
+<body class="bg-slate-900 text-white">
 
 
 <header class="bg-slate-400 text-white">
    <!-- Header Section -->
      <header class="bg-slate-800 shadow-xl p-4">
       <nav class="container mx-auto flex items-center justify-between px-4 py-3">
-  <h1 class="text-3xl font-serif font-bold text-blue-400">Dark Tower</h1>
+  <h1 class="text-3xl font-serif font-bold text-blue-400">The Dark Tower Explorer</h1>
 
  
   <!-- Nav Links -->
-   <nav class="flex items-center gap-4">
-    <ul id="navLinks" class="hidden lg:flex gap-6 text-sm flex-col lg:flex-row bg-slate-800 lg:bg-transparent absolute lg:static top-full left-0 w-full lg:w-auto px-4 lg:px-0 py-4 lg:py-0 z-50">
-      <li><a href="index.html" class="hover:text-amber-400">Home</a></li>
-      <li><a href="books.html" class="hover:text-blue-300">Books</a></li>
-      <li><a href="characters.html" class="hover:text-rose-300">Characters</a></li>
-    </ul>
-  <!-- Hamburger Button -->
-  <button id="navToggle" class="lg:hidden text-white focus:outline-none">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
+      <ul>
+        <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+        <li><a href="books.html" class="text-amber-400 font-bold">Books</a></li>
+        <li><a href="characters.html" class="hover:text-rose-400">Characters</a></li>
+      </ul>
+    
+  
 </nav>
  </header>
      <!-- Hero Section -->
@@ -81,7 +80,7 @@
   <!-- Main Content Section -->
    <!-- Cards will show here-->
      <main class="container mx-auto px-4 py-10">
-  <h2 class="text-3xl font-serif text-center text-blue-900 mb-8">The Dark Tower Book Covers</h2>
+  <h2 class="text-3xl font-serif text-center text-blue-900 mb-8">The Dark Tower</h2>
   <m id="darkTowerGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     
     <!-- Gunslinger -->
@@ -112,7 +111,7 @@
     </div>
 
     <!-- Wizard and Glass -->
-    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+    <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
       <img src="assets/images/w&g-cropped.png" alt="Wizard and Glass cover" class="w-full h-64 object-cover">
       <div class="p-4">
         <h3 class="text-xl text-violet-300 font-bold">Wizard and Glass</h3>
@@ -121,7 +120,7 @@
     </div>
 
     <!-- Wolves of the Calla -->
-    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+    <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
       <img src="assets/images/woc-cropped.png" alt="Wolves of the Calla cover" class="w-full h-64 object-cover">
       <div class="p-4">
         <h3 class="text-xl font-bold text-amber-400 mb-2">Wolves of the Calla</h3>
@@ -140,27 +139,42 @@
 
     
     <!-- The Dark Tower -->
-    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-      <img src="assets/images/tdt-cropped.png" alt="The Dark Tower cover" class="w-full h-64 object-cover">
+    <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+      <img src="assets/images/tdt-cropped.png" alt="Song of Susannah cover" class="w-full h-64 object-cover hover:shadow-2xl transition-all duration-300">
       <div class="p-4">
-        <h3 class="text-xl font-bold text-blue-400 mb-2">The Dark Tower</h3>
+        <h3 class="text-xl font-bold text-rose-300 mb-2">The Dark Tower</h3>
         <p class="text-slate-300 text-sm">Roland's final confrontation with destiny at the heart of the multiverse.</p>
       </div>
     </div>
+    
+  <!-- Cards end here -->
+  <!-- Button to show quotes -->
+  <div class="max-w-md mx-auto mt-10 bg-slate-800 shadow-lg rounded-lg p-6 relative">
+  <div id="quotes" class="text-xl italic text-blue-300 mb-20 animate-fadeInUp">
+    <!-- Quote will appear here -->
+  </div>
 
-     
+  <button onclick="myFunction()" class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-rose-400 text-slate-500 px-4 py-2 rounded shadow-md border border-rose-500 hover:bg-rose-500 hover:text-white transition-colors duration-300s">
+    <p>The Journey Quotes</p>
+  </button>
+</div>
 
-    </div>
+
+
+    
+      
+</div>
     </main>
   
   <!-- Footer Section -->
   <footer class="bg-slate-800 text-center py-6 mt-10">
     <p class="text-slate-400 text-sm">© 2023 The Dark Tower Explorer. All rights reserved.</p>
     <p class="text-slate-400 text-xs">Created with ❤️ by Ellene R Broome</p>
+  </footer>
 
   
   <!-- JavaScript -->
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>

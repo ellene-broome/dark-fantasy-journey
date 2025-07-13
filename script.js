@@ -1,15 +1,7 @@
 console.log("Hello, Dark Fantasy Journey!");
 
-// ========== TOAST NOTIFICATION ==========
-function showToast(message = "Too many requests — please wait.") {
-  const toast = document.getElementById("toast");
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.remove("hidden");
-  setTimeout(() => {
-    toast.classList.add("hidden");
-  }, 4000);
-}
+
+
 
 // ========== NAVIGATION TOGGLE ==========
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,29 +13,35 @@ if (navToggle && navLinks) {
     navLinks.classList.toggle("hidden");
   });
 }
-
-  // Show More Button (Homepage only)
-  const showMoreBtn = document.getElementById("showMoreBtn");
-  if (showMoreBtn) {
-    showMoreBtn.addEventListener("click", () => {
-      const more = document.getElementById("moreContent");
-      if (more) more.classList.toggle("hidden");
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("navLinks");
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("hidden");
     });
   }
 
-  // Lazy reveal animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-fadeInUp');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+// Quote section
+  const quotes = ["Ka is a wheel. Its one purpose is to turn, and in the end it always comes back to the place where it started. -The Gunslinger", "Ka...it means duty, destiny, and doom - and sometimes all three at once. -The Drawing of the Three", "Go then. There are other worlds than these. -The Gunslinger", "The man in black fled across the desert, and the gunslinger followed. -The Gunslinger", "The world has moved on, and so must you. -The Gunslinger", "Time is a face on the water. -The Drawing of the Three", "There are other worlds than these. -The Gunslinger", "The tower stands at the center of all worlds. -The Dark Tower", "Time's the thief of memory, and memory's the thief of time. -The Drawing of the Three", "The gunslinger is true to his word, but he is not bound by it. -The Gunslinger","Death is not for you, gunslinger. Never for you. -The Gunslinger"
 
-  document.querySelectorAll("article, div.card").forEach(el => observer.observe(el));
+  ];
+  
+  // function for quote button
+  
 
-  // Load page-specific data
+function pickRandom() {
+  return quotes[Math.floor(Math.random() * quotes.length)];
+}
+
+window.myFunction = function () {
+  const quoteBox = document.getElementById("quotes");
+  if (!quoteBox) return;
+  quoteBox.innerText = pickRandom();
+};
+
+  myFunction(); // show quote on load
+
+// Load page-specific data
   const booksSection = document.getElementById("darkTowerGrid");
   const characterSection = document.getElementById("characterGrid");
 
@@ -58,8 +56,14 @@ if (characterSection && window.location.pathname.includes("characters")) {
   console.log("***** Loading characters...");
   loadCharacters();
 }
-
+  // Add fade-in animation to quotes
+  const quoteElement = document.getElementById("quotes");
+  if (quoteElement) {
+    quoteElement.classList.add("animate-fadeInUp");
+  }
 });
+
+
 
 // ========== BOOKS FROM API ==========
 async function fetchBooks() {
@@ -88,10 +92,10 @@ async function fetchBooks() {
     const data = await res.json(); // data available
     console.log("Book data from API:", data); // Debugging line
 
-    const books = data.docs.slice(0, 10);
+    const books = data.docs.slice(0, 8);
     console.log("Books to display:", books); // Debugging line
 
-    grid.innerHTML = data.docs.slice(0, 10).map(book => `
+    grid.innerHTML = data.docs.slice(0, 8).map(book => `
       <div class="bg-slate-800 p-4 rounded shadow hover:shadow-lg">
         <h2 class="text-xl font-bold text-blue-300">${book.title}</h2>
         <p class="text-gray-300">Author: ${book.author_name?.[0] || "Unknown"}</p>
